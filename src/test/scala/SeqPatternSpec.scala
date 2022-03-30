@@ -4,19 +4,16 @@ import matchers._
 
 class SeqPatternSpec extends AnyFlatSpec with should.Matchers {
 
-  "A Function" should "return true or false after checking Seqs" in {
-    val f = new SeqPattern
-    f.checkSeq(4, List(1, 2, 3, 6, 5, 6, 7)) should be (true)
-    f.checkSeq(0, List[Int]()) should be (false)
-    f.checkSeq(3, Seq(0, 0, 0, 1, 2, 3)) should be (true)
-    f.checkSeq(3, Seq(0, 0, 0, 1, 2)) should be (true)
-    f.checkSeq(3, Seq(0, 5, 0, 1, 2)) should be (false)
+  "checkSeq" should "verify ???" in {
+    import SeqPattern._
+    checkSeq(4, Seq(1, 2, 3, 6, 5, 6, 7)) shouldBe true
+    checkSeq(0, Seq.empty[Int]) should be(false)
+    checkSeq(3, Seq(0, 0, 0, 1, 2, 3)) should be(true)
   }
 
-//  it should "throw NoSuchElementException if an empty stack is popped" in {
-//    val emptyStack = new Stack[Int]
-//    a [NoSuchElementException] should be thrownBy {
-//      emptyStack.pop()
-//    }
-//  }
+  it should "be true for ..." in {
+    import SeqPattern._
+    checkSeq(3, Seq(0, 0, 0, 1, 2)) should be (true)
+    checkSeq(3, Seq(0, 5, 0, 1, 2)) should be (false)
+  }
 }

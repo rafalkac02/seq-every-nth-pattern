@@ -1,4 +1,4 @@
-class SeqPattern {
+object SeqPattern {
 
   def checkSeq(n: Int, s: Seq[Int]): Boolean = {
     if (n == 0 || s.isEmpty) return false
