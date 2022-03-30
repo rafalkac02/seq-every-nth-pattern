@@ -1,11 +1,11 @@
 object SeqPattern {
 
-  def checkSeq(n: Int, s: Seq[Int]): Boolean = {
-    if (n == 0 || s.isEmpty) return false
+  def checkSeq(n: Int, ns: Seq[Int]): Boolean = {
+    if (n == 0 || ns.isEmpty) return false
 
-    s.grouped(n).toSeq.foreach{
-      seq => if (seq.length == n && seq(n-1) != seq.dropRight(1).sum) return false
+    ns.grouped(n).forall {
+      case seq if seq.length != n => true
+      case seq => seq.last == seq.init.sum
     }
-    true
   }
 }
